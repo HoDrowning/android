@@ -20,3 +20,6 @@ emulator -avd $avd_name -writable-system -selinux permissive
 
 #command reset emulator + process mode debug
 emulator -avd $avd_name -writable-system -selinux permissive -http-proxy http://127.0.0.1:8080 -debug-proxy -wipe-data
+
+#frida with git
+https://github.com/OWASP/www-chapter-toronto/blob/master/assets/slides/OWASP%20Frida%20101.pdf
