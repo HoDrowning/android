@@ -1,1 +1,22 @@
+#setup alias emulator
+alias emulator='/Users/danghau/Library/Android/sdk/emulator/emulator'
 
+#Cert burp
+#export cert burp via "Import / export CA certificate"
+openssl x509 -inform DER -in cacert.der -out cacert.pem
+openssl x509 -inform PEM -subject_hash_old -in cacert.pem |head -1
+mv cacert.pem <hash>.0
+
+#Emulator trust cert burp suite
+adb root
+adb remount
+adb push <cert>.0 /sdcard/
+mv /sdcard/<cert>.0 /system/etc/security/cacerts/
+chmod 644 /system/etc/security/cacerts/<cert>.0
+
+
+#start emulator & grant permission write
+emulator -avd $avd_name -writable-system -selinux permissive
+
+#command reset emulator + process mode debug
+emulator -avd $avd_name -writable-system -selinux permissive -http-proxy http://127.0.0.1:8080 -debug-proxy -wipe-data
