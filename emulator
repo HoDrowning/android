@@ -1,0 +1,2 @@
+#start emulator avd & grant permission write
+emulator -avd test -writable-system -selinux permissive
