@@ -1,1 +1,15 @@
 Note quá trình, các cách giải uncrackable
+
+1. Use apktool bung app: 
+$apktool d UnCrackable-Level1.apk -o unCrackable 
+
+2. Build lại app sau khi sửa code: 
+$apktool b
+
+3. Use zipalign: 
+$zipalign -v 4 UnCrackable-Level1.apk UnCrackable-Level1_1.apk
+
+4. Use jarsigner
+$jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/danghau/Library/Java/JavaVirtualMachines/openjdk-16/Contents/Home/bin/my-release-key.keystore UnCrackable-Level1_1.apk alias_name
+
+Cài đặt lại app lên emulator -> bypass check root
