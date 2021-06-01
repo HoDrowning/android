@@ -12,4 +12,11 @@ $zipalign -v 4 UnCrackable-Level1.apk UnCrackable-Level1_1.apk
 4. Use jarsigner
 $jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/danghau/Library/Java/JavaVirtualMachines/openjdk-16/Contents/Home/bin/my-release-key.keystore UnCrackable-Level1_1.apk alias_name
 
+Cài đặt và setup signer key: 
+4.1. create a key using
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+4.2. then sign the apk using :
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name
+
 Cài đặt lại app lên emulator -> bypass check root
