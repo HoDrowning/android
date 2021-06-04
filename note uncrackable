@@ -20,3 +20,7 @@ keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg R
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name
 
 Cài đặt lại app lên emulator -> bypass check root
+
+Công cụ reverse app - androwarn
+pip install androwarn
+androwarn -i UnCrackable-Level1.apk -v 3 -r html
