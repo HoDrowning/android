@@ -1,0 +1,26 @@
+cat key.pem | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+
+openssl x509 -in cert.pem -pubkey  -out key.pem
+openssl x509 -pubkey -noout -in cert.pem > pubkey.pem
+
+openssl x509 -inform der -in certificate.cer -out certificate.pem
+
+To generate the pin for a certificate, use:
+
+openssl x509 -in <your-certificate> -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+And this way you can get the pin for a certificate signing request:
+openssl rsa -in newkey.pem -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+
+
+openssl req -in CertificateRequest.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+And finally, you can get the pin for an existing HTTPS web site, for example httpsecurityheaders.applephi.net:
+
+openssl s_client -servername httpsecurityheaders.applephi.net -connect httpsecurityheaders.applephi.net:443 | openssl x509 -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+
+Create a PKCS#12 keystore from a private key and certificate
+openssl pkcs12 -export -in <signed_cert_filename> -inkey <private_key_filename> -name ‘keysote’ -out keystore.p12
+
+openssl x509 -outform der -in certificate.pem -out certificate.der
+openssl x509 -inform der -in certificate.cer -out certificate.pem
+
+
